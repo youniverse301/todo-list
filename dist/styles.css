@@ -1,0 +1,323 @@
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+#content {
+    height: 100%;
+    background-color: #192734;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 80px 1fr;
+}
+
+#bannerContainer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-bottom: 1px solid #1C9BEF;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    align-items: center;
+}
+
+#bannerContainer > h1 {
+    display: flex;
+    margin: 0;
+    color: white;
+    font-size: 3rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    justify-self: center;
+}
+
+#sidebarBtn {
+    background: none;
+    border: none;
+    justify-self: left;
+    padding-left: 25px;
+}
+
+#sidebarBtn > img {
+    height: 35px;
+    width: 35px;
+}
+
+#todayDate {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    justify-self: right;
+    padding-right: 25px;
+}
+
+#leftContainer {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    height: 91vh;
+    background-color: #15202B;
+    padding: 15px;
+    padding-left: 25px;
+    display: grid;
+    grid-template-rows: 22% 20%;
+}
+
+#home {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
+}
+
+#homeText, #projectText {
+    width: 90%;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    justify-self: left;
+    height: fit-content;
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+#inbox {
+    display: flex;
+    align-items: center;
+    grid-row-start: 2;
+    padding-left: 20px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#inbox > img {
+    height: 33px;
+    width: 33px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+}
+
+#today {
+    display: flex;
+    align-items: center;
+    grid-row-start: 3;
+    padding-left: 20px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#today > img {
+    height: 37px;
+    width: 37px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+}
+
+#next7 {
+    display: flex;
+    align-items: center;
+    grid-row-start: 4;
+    padding-left: 20px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#next7 > img {
+    height: 37px;
+    width: 37px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+}
+
+#projects {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 15px;
+}
+
+#projectImg {
+    height: 30px;
+    width: 30px;
+    display: flex;
+}
+
+#placeholderProject, #project {
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    width: 100%;
+    column-gap: 15px;
+    grid-row-start: 2;
+    height: fit-content;
+    cursor: pointer;
+}
+
+#menuVert {
+    width: 22px;
+    height: 22px;
+    align-self: flex-end;
+    padding-left: 40%;
+}
+
+#addProject > img {
+    height: 30px;
+    width: 30px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+}
+
+#addProject {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: .8rem;
+    width: 100%;
+    column-gap: 15px;
+    cursor: pointer;
+    height: 40px;
+    order: 999;
+}
+
+.tile {
+    display: flex;
+    height: 50px;
+    width: 260px;
+}
+
+.tile:hover {
+    background-color: #192734;
+    border-radius: 5px;
+}
+
+#rightContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#titleContainer {
+    display: flex;
+    align-items: center;
+    height: 155px;
+    width: 90%;
+    background-color: #1C9BEF;
+    border-radius: 5px;
+    margin-top: 35px;
+}
+ 
+  #allTasksTitle {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.8rem;
+    padding-left: 25px;
+}
+
+#taskContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    height: fit-content;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-top: 35px;
+}
+
+#completeTaskBtn {
+    height: 25px;
+    width: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+#taskTitle {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+#taskDesc {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+
+#textContainer {
+    width: 100%;
+}
+
+#dateContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 125px;
+    border-radius: 12px;
+    border: 1px solid white;
+    margin-right: 17px;
+}
+
+#dateText {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2rem;
+}
+
+#importantBtn {
+    height: 30px;
+    padding-right: 15px;
+    padding-bottom: 2px;
+}
+
+#editBtn {
+    height: 28px;
+    padding-right: 13px;
+}
+
+#projectForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    order: 998;
+}
+
+#projectForm input[type="text"] {
+    width: 250px;
+    height: 26px;
+}
+
+#projectForm button[type="submit"] {
+    background-color: green;
+    width: 70px;
+    height: 28px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-radius: 3px;
+}
