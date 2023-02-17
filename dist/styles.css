@@ -150,7 +150,7 @@ body {
     display: flex;
 }
 
-#placeholderProject, #project {
+.project {
     display: flex;
     flex-direction: row;
     padding-left: 20px;
@@ -161,14 +161,20 @@ body {
     column-gap: 15px;
     grid-row-start: 2;
     height: fit-content;
+    width: 250px;
     cursor: pointer;
+    align-items: center;
+}
+
+#projectTitle {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 #menuVert {
     width: 22px;
     height: 22px;
-    align-self: flex-end;
-    padding-left: 40%;
 }
 
 #addProject > img {
@@ -220,7 +226,7 @@ body {
     margin-top: 35px;
 }
  
-  #allTasksTitle {
+#allTasksTitle {
     color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 2.8rem;
@@ -297,7 +303,8 @@ body {
 
 #projectForm {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     align-items: center;
     padding-left: 20px;
     width: fit-content;
@@ -319,5 +326,109 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1rem;
     border: none;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 55px;
+}
+
+#renameForm {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+}
+
+#renameForm input[type="text"] {
+    width: 250px;
+    height: 26px;
+}
+
+#renameForm button[type="submit"] {
+    background-color: green;
+    width: 70px;
+    height: 28px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 55px;
+}
+
+#cancel {
+    background-color: red;
+    width: 70px;
+    height: 28px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.selected {
+    background-color: #1C9BEF;
+    height: 40px;
+    border-radius: 5px;
+    padding-right: 20px;
+}
+
+#editContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    opacity: 100%;
+    background-color:#192734;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+}
+
+#menuvertWrap {
+    display: flex;
+    height: 24px;
+    width: 24px;
+    position: relative;
+}
+
+#renameBtn {
+    background-color: #192734;
+    border: none;
+    height: 50%;
+    width: 100%;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3rem;
+}
+
+#renameBtn:hover {
+    background-color: #15202B;
+    border: 3px solid #192734;
+    border-radius: 3px;
+}
+
+#deleteBtn {
+    background-color: #192734;
+    border: none;
+    height: 50%;
+    width: 100%;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3rem;
+}
+
+#deleteBtn:hover {
+    background-color: #15202B;
+    border: 3px solid #192734;
     border-radius: 3px;
 }

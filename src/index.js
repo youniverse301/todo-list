@@ -1,6 +1,7 @@
-import { inbox } from "./modules/inbox";
+import { loadPage } from "./modules/inbox";
 
-inbox();
+loadPage();
+
 
 document.getElementById("inbox").addEventListener('click', function() {
     console.log("yo")
