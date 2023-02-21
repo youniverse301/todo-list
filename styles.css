@@ -233,7 +233,7 @@ body {
     padding-left: 25px;
 }
 
-#taskContainer {
+.taskContainer, #taskContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -334,17 +334,16 @@ body {
 
 #renameForm {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: row;
     align-items: center;
-    padding-left: 20px;
     width: fit-content;
     height: fit-content;
     cursor: pointer;
 }
 
 #renameForm input[type="text"] {
-    width: 250px;
+    width: 80px;
     height: 26px;
 }
 
@@ -357,9 +356,7 @@ body {
     font-size: 1rem;
     border: none;
     border-radius: 3px;
-    margin-top: 10px;
-    margin-right: 10px;
-    margin-left: 55px;
+    margin-left: 10px;
 }
 
 #cancel {
@@ -431,4 +428,75 @@ body {
     background-color: #15202B;
     border: 3px solid #192734;
     border-radius: 3px;
+}
+
+#addTaskContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+    margin-top: 35px;
+    cursor: pointer;
+    order: 999;
+}
+
+#addBtn {
+    height: 35px;
+    width: 35px;
+}
+
+#addTaskText {
+    padding-left: 25px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3rem;
+    font-weight: bolder;
+}
+
+#taskFormContainer {
+    display: flex;
+    justify-content: center;
+    order: 998;
+    height: fit-content;
+    width: 90%;
+    margin-top: 35px;
+    background-color: #15202B;
+}
+
+#taskForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+}
+
+#taskForm > label {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3rem;
+    height: fit-content;
+    width: 100%;
+    padding-top: 10px;
+}
+
+#taskForm > input {
+    width: 100%;
+    height: 20px;
+}
+
+#taskForm button[type="submit"] {
+    background-color: green;
+    width: 70px;
+    height: 28px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-radius: 3px;
+}
+
+#taskForm > button {
+    margin: 10px
 }
