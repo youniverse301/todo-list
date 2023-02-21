@@ -65,23 +65,39 @@ function createProject(projectName) {
         menuvertWrap.appendChild(menuVert);
 
     selectProject();
-    menuvertWrap.addEventListener('click', addEditContainer); 
+    menuvertWrap.addEventListener('click', toggleEditContainer);
+
 }
 
-function addEditContainer(event) {
+function toggleEditContainer(event) {
   const menuvertWrap = event.target.parentNode;
-  const editContainer = document.createElement('div');
-  editContainer.setAttribute('id', 'editContainer');
-  menuvertWrap.insertBefore(editContainer, menuvertWrap.firstChild);
-  const renameBtn = document.createElement('button');
-  renameBtn.setAttribute('id', 'renameBtn');
-  renameBtn.textContent="Rename";
-  editContainer.appendChild(renameBtn);
-  const deleteBtn = document.createElement('button');
-  deleteBtn.setAttribute('id', 'deleteBtn');
-  deleteBtn.textContent="Delete";
-  editContainer.appendChild(deleteBtn);
-  renameBtn.addEventListener('click', renameProject); 
+  const editContainer = document.getElementById('editContainer');
+
+  if (editContainer && menuvertWrap.contains(editContainer)) {
+    editContainer.remove();
+  } else {
+    const newEditContainer = document.createElement('div');
+    newEditContainer.setAttribute('id', 'editContainer');
+    const renameBtn = document.createElement('button');
+    renameBtn.setAttribute('id', 'renameBtn');
+    renameBtn.textContent = "Rename";
+    const deleteBtn = document.createElement('button');
+    deleteBtn.setAttribute('id', 'deleteBtn');
+    deleteBtn.textContent = "Delete";
+    newEditContainer.appendChild(renameBtn);
+    newEditContainer.appendChild(deleteBtn);
+    renameBtn.addEventListener('click', renameProject);
+    deleteBtn.addEventListener('click', deleteProject);
+    menuvertWrap.appendChild(newEditContainer);
+  }
+}
+
+
+
+
+function deleteProject() {
+  const project = event.target.closest('.project');
+  project.remove();
 }
 
 function renameProject() {
@@ -91,6 +107,7 @@ function renameProject() {
   // Hide the project title and show the form
   const projectTitle = project.querySelector('#projectTitle');
   const projectForm = document.createElement('form');
+  projectForm.setAttribute('id', 'renameForm');
   const input = document.createElement('input');
   input.type = 'text';
   input.value = projectTitle.innerText;
@@ -103,7 +120,8 @@ function renameProject() {
   
   const editContainer = document.getElementById('editContainer');
   editContainer.remove();
-  // Update the project title when the form is submitted
+  
+  // Update the project title and alltaskstitle when the form is submitted
   projectForm.addEventListener('submit', function(event) {
     event.preventDefault();
     const newTitle = input.value;
@@ -111,6 +129,9 @@ function renameProject() {
     newProjectTitle.setAttribute('id', 'projectTitle');
     newProjectTitle.innerText = newTitle;
     project.replaceChild(newProjectTitle, projectForm);
+    
+    const allTasksTitle = document.getElementById('allTasksTitle');
+    allTasksTitle.innerText = newTitle;
   });
 }
 
@@ -118,8 +139,6 @@ const renameBtns = document.querySelectorAll('.renameBtn');
 renameBtns.forEach(function(btn) {
   btn.addEventListener('click', renameProject);
 });
-
-
 
 
 const projectForm = document.createElement('form');
@@ -160,7 +179,7 @@ projectForm.addEventListener('submit', function(event) {
 
   console.log(formData.name);
   input1.value=""
-  createProject(projectName);
+  createProject(projectName);;
   projectForm.remove();
 
 });
@@ -168,20 +187,20 @@ projectForm.addEventListener('submit', function(event) {
 
 
 function selectProject() {
-    const projects = document.querySelectorAll('.project');
-    projects.forEach(function(project) {
-      project.addEventListener('click', function() {
-        const selectedProject = document.querySelector('.selected');
-        if (selectedProject) {
-          selectedProject.classList.remove('selected');
-        }
-        project.classList.add('selected');
-        allTasksTitle.innerHTML=projectName;
-      });
+  const projects = document.querySelectorAll('.project');
+  projects.forEach(function(project) {
+    project.addEventListener('click', function() {
+      const selectedProject = document.querySelector('.selected');
+      if (selectedProject) {
+        selectedProject.classList.remove('selected');
+      }
+      project.classList.add('selected');
+      const projectTitle = project.querySelector('#projectTitle');
+      const allTasksTitle = document.getElementById('allTasksTitle');
+      allTasksTitle.innerHTML = projectTitle.innerText;
     });
+  });
 }
-  
-
 
 
 function loadPage() {
