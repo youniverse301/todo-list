@@ -198,9 +198,49 @@ function selectProject() {
       const projectTitle = project.querySelector('#projectTitle');
       const allTasksTitle = document.getElementById('allTasksTitle');
       allTasksTitle.innerHTML = projectTitle.innerText;
+
+      // Get the project class
+      const projectClass = project.getAttribute('id');
+  
+      // Select all tasks
+      const tasks = document.querySelectorAll('.taskContainer');
+  
+      // Loop through the tasks
+      tasks.forEach(function(task) {
+        // Check if the task has the corresponding class to the selected project
+        if (task.classList.contains(projectClass)) {
+          // Display the task
+          task.classList.remove('hidden');
+        } else {
+          // Hide the task
+          task.classList.add('hidden');
+        }
+      });
     });
   });
 }
+
+function loadInbox() {
+  const tasks = document.querySelectorAll('.taskContainer');
+  tasks.forEach(function(task) {
+      task.classList.remove('hidden');
+  });
+}
+
+function loadImportant() {
+  const tasks = document.querySelectorAll('.taskContainer');
+  tasks.forEach(function(task) {
+    if (task.classList.contains('important')) {
+      task.classList.remove('hidden');
+    } else {
+      task.classList.add('hidden');
+    }
+  });
+}
+
+
+  
+
 
 
 function loadPage() {
@@ -222,4 +262,4 @@ function loadPage() {
     allTasksTitle.innerHTML=projectName;
 }
 
-export {loadPage, createProject};
+export {loadPage, createProject, loadInbox, loadImportant};

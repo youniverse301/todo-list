@@ -57,17 +57,22 @@ body {
     grid-row-start: 2;
     grid-row-end: 3;
     display: flex;
+    flex-direction: column;
     height: 91vh;
     background-color: #15202B;
     padding: 15px;
     padding-left: 25px;
-    display: grid;
-    grid-template-rows: 22% 20%;
+}
+
+#homeContainer {
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
 }
 
 #home {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(1 1fr);
     row-gap: 10px;
 }
 
@@ -131,6 +136,24 @@ body {
 }
 
 #next7 > img {
+    height: 37px;
+    width: 37px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+}
+
+#important {
+    display: flex;
+    align-items: center;
+    grid-row-start: 5;
+    padding-left: 20px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#important > img {
     height: 37px;
     width: 37px;
     padding-right: 15px;
@@ -299,6 +322,46 @@ body {
 #editBtn {
     height: 28px;
     padding-right: 13px;
+    cursor: pointer;
+}
+
+#editBtnContainer {
+    display: flex;
+    height: fit-content;
+    position: relative;
+}
+
+#editTaskBtn {
+    background-color: #263746;
+    border: none;
+    height: 50%;
+    width: 100%;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3rem;
+    border-radius: 3px;
+}
+
+#editTaskBtn:hover {
+    background-color: #192734;
+    border: 3px solid #263746;
+    border-radius: 3px;
+}
+
+#deleteTaskBtn {
+    background-color: #263746;
+    border: none;
+    height: 50%;
+    width: 100%;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3rem;
+}
+
+#deleteTaskBtn:hover {
+    background-color: #192734;
+    border: 3px solid #263746;
+    border-radius: 3px;
 }
 
 #projectForm {
@@ -389,6 +452,19 @@ body {
     position: absolute;
     bottom: 30px;
     right: 10px;
+}
+
+#editTaskContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    opacity: 100%;
+    background-color:#15202B;
+    position: absolute;
+    bottom: 35px;
+    right: 20px;
 }
 
 #menuvertWrap {
@@ -499,4 +575,8 @@ body {
 
 #taskForm > button {
     margin: 10px
+}
+
+.hidden {
+    display: none;
 }
