@@ -183,7 +183,7 @@ body {
     width: 100%;
     column-gap: 15px;
     grid-row-start: 2;
-    height: fit-content;
+    height: 40px;
     width: 250px;
     cursor: pointer;
     align-items: center;
@@ -436,7 +436,6 @@ body {
 
 .selected {
     background-color: #1C9BEF;
-    height: 40px;
     border-radius: 5px;
     padding-right: 20px;
 }
@@ -579,4 +578,8 @@ body {
 
 .hidden {
     display: none;
+}
+
+.selected:hover {
+    background-color: #13669E;
 }
