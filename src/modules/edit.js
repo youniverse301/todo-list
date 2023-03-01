@@ -1,3 +1,4 @@
+import format from "date-fns/format";
 const rightContainer = document.getElementById('rightContainer');
 const titleContainer = document.getElementById('titleContainer');
 
@@ -104,7 +105,8 @@ function createTask() {
     event.preventDefault();
     const title = document.getElementById('titleInput').value;
     const details = document.getElementById('detailsInput').value;
-    const date = document.getElementById('dateInput').value;
+    const dateUnformatted = document.getElementById('dateInput').value;
+    const date = format(new Date(dateUnformatted + 'T00:00:00Z'), "MM/dd/yyyy");
   
     const task = Task(title, details, date);
     const taskDiv = createTaskDiv(task);
@@ -268,7 +270,9 @@ function taskFormEdit(event) {
   const dateInput = document.createElement('input');
   dateInput.setAttribute('id', 'dateInput');
   dateInput.type = 'date';
-  dateInput.value = taskDate.innerText;
+  const dateFormatted = format(new Date (taskDate.innerText), 'yyyy-MM-dd');
+  dateInput.value = dateFormatted
+  console.log(format(new Date (taskDate.innerText), 'yyyy/MM/dd'));
   taskForm.appendChild(dateInput);
 
   const submit = document.createElement('button');
@@ -288,7 +292,7 @@ function taskFormEdit(event) {
     newDetailsTitle.innerText = newDetails;
     taskDetails.replaceWith(newDetailsTitle);
 
-    const newDate = dateInput.value;
+    const newDate = format(new Date (dateInput.value), 'MM/dd/yyyy');
     const newDateTitle = document.createElement('div');
     newDateTitle.setAttribute('id', 'dateText');
     newDateTitle.innerText = newDate;

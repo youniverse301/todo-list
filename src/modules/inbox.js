@@ -92,9 +92,6 @@ function toggleEditContainer(event) {
   }
 }
 
-
-
-
 function deleteProject() {
   const project = event.target.closest('.project');
   project.remove();
@@ -221,6 +218,15 @@ function selectProject() {
 }
 
 function loadInbox() {
+  const leftContainer = document.getElementById('leftContainer');
+  const selectedDivs = leftContainer.querySelectorAll('.selected');
+  selectedDivs.forEach(function(selectedDiv) {
+    selectedDiv.classList.remove('selected');
+  });
+
+  const inbox = document.getElementById('inbox');
+  inbox.classList.add('selected');
+
   const tasks = document.querySelectorAll('.taskContainer');
   tasks.forEach(function(task) {
       task.classList.remove('hidden');
@@ -228,7 +234,16 @@ function loadInbox() {
 }
 
 function loadImportant() {
+  const leftContainer = document.getElementById('leftContainer');
+  const selectedDivs = leftContainer.querySelectorAll('.selected');
+  selectedDivs.forEach(function(selectedDiv) {
+    selectedDiv.classList.remove('selected');
+  });
+
   const tasks = document.querySelectorAll('.taskContainer');
+  const important = document.getElementById('important');
+  important.classList.add('selected');
+
   tasks.forEach(function(task) {
     if (task.classList.contains('important')) {
       task.classList.remove('hidden');
@@ -239,22 +254,9 @@ function loadImportant() {
 }
 
 
-  
-
-
-
 function loadPage() {
     rightContainer.appendChild(titleContainer);
     titleContainer.appendChild(allTasksTitle);
-    rightContainer.appendChild(taskContainer);
-    taskContainer.appendChild(completeTaskBtn);
-    taskContainer.appendChild(textContainer);
-    textContainer.appendChild(taskTitle);
-    textContainer.appendChild(taskDesc);
-    taskContainer.appendChild(dateContainer);
-    dateContainer.appendChild(dateText);
-    taskContainer.appendChild(importantBtn);
-    taskContainer.appendChild(editBtn);
     var projectName="Default";
     createProject(projectName);
     const project = document.getElementById('project-1');
