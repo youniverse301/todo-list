@@ -106,7 +106,7 @@ function createTask() {
     const title = document.getElementById('titleInput').value;
     const details = document.getElementById('detailsInput').value;
     const dateUnformatted = document.getElementById('dateInput').value;
-    const date = format(new Date(dateUnformatted + 'T00:00:00Z'), "MM/dd/yyyy");
+    const date = new Date(dateUnformatted).toLocaleDateString('en-US', { timeZone: 'UTC' });      
   
     const task = Task(title, details, date);
     const taskDiv = createTaskDiv(task);
@@ -145,6 +145,7 @@ function Task(title, details, date) {
     const completeTaskBtn = document.createElement('img');
     completeTaskBtn.setAttribute('id', 'completeTaskBtn');
     completeTaskBtn.src="./imgs/filledCircle.png";
+    completeTaskBtn.addEventListener('click', completedTask);
   
     const textContainer = document.createElement('div');
     textContainer.setAttribute('id', 'textContainer');
@@ -161,7 +162,20 @@ function Task(title, details, date) {
     dateContainer.setAttribute('id', 'dateContainer');
     const dateText = document.createElement('p');
     dateText.setAttribute('id', 'dateText');
-    dateText.innerHTML = task.date;
+    if (task.date) {
+      try {
+        const formattedDate = format(new Date(task.date), "MM/dd/yyyy");
+        dateText.innerHTML = formattedDate;
+      } catch (error) {
+        dateText.innerHTML = "";
+      }
+    } else {
+      dateText.innerHTML = "";
+    }
+    
+     
+    
+
   
     const importantBtn = document.createElement('img');
     importantBtn.setAttribute('id', 'importantBtn');
@@ -209,7 +223,6 @@ function toggleEditContainer(event) {
       deleteBtn.textContent = "Delete";
       newEditContainer.appendChild(editTaskBtn);
       newEditContainer.appendChild(deleteBtn);
-      //renameBtn.addEventListener('click', renameProject);
       deleteBtn.addEventListener('click', deleteProject);
       editTaskBtn.addEventListener('click', taskFormEdit);
       editBtnContainer.appendChild(newEditContainer);
@@ -315,6 +328,13 @@ function addimportant() {
   importantBtn.src = "./imgs/starFilled.png"
   taskElement.classList.add('important');
 
+}
+
+function completedTask() {
+  const taskElement = event.target.closest('.taskContainer');
+  const completeTaskBtn =  taskElement.querySelector('#completeTaskBtn');
+  completeTaskBtn.src = "./imgs/filledCircleBlue.png"
+  taskElement.classList.add('completed');
 }
 
 

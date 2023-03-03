@@ -9,30 +9,27 @@ function dateFormat() {
 }
 
 function loadToday() {
-    const leftContainer = document.getElementById('leftContainer');
-    const selectedDivs = leftContainer.querySelectorAll('.selected');
-    selectedDivs.forEach(function(selectedDiv) {
-      selectedDiv.classList.remove('selected');
-    });
-  
-    const today = document.getElementById('today');
-    today.classList.add('selected');
-  
-    const tasks = document.querySelectorAll('.taskContainer');
-    tasks.forEach(function(task) {
-        task.classList.remove('hidden');
-    });
+  const leftContainer = document.getElementById('leftContainer');
+  const selectedDivs = leftContainer.querySelectorAll('.selected');
+  selectedDivs.forEach(function(selectedDiv) {
+    selectedDiv.classList.remove('selected');
+  });
 
-    const date = new Date();
-    tasks.forEach(function(task) {
-        const dueDate = task.querySelector('dateText')
-        if (dueDate && isToday(new Date(dueDate.innerText))) {
-          task.classList.remove('hidden');
-        } else {
-          task.classList.add('hidden');
-        }
-      });
-  }
+  const today = document.getElementById('today');
+  today.classList.add('selected');
+
+  const tasks = document.querySelectorAll('.taskContainer');
+  const todayString = format(new Date(), 'MM/dd/yyyy'); // format today's date as a string
+  tasks.forEach(function(task) {
+    const dueDate = task.querySelector('#dateText').textContent; // get the task's due date as a string
+    if (dueDate === todayString) { // compare the task's due date to today's date string
+      task.classList.remove('hidden');
+    } else {
+      task.classList.add('hidden');
+    }
+  });
+}
+
 
 function loadNext7() {
     const leftContainer = document.getElementById('leftContainer');
