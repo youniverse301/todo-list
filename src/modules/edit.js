@@ -35,9 +35,9 @@ editBtn.setAttribute('id', 'editBtn');
 editBtn.src="./imgs/menu-vertical.png";
 
 
-
 const addTask = document.createElement('div');
 addTask.setAttribute('id', 'addTaskContainer');
+addTask.classList.add('hidden');
 addTask.addEventListener('click', taskForm);
 
 const addBtn = document.createElement('img');
@@ -48,7 +48,18 @@ const addBtn = document.createElement('img');
     addTaskText.setAttribute('id', 'addTaskText');
     addTaskText.innerHTML="Add Task";
 
+    function loadAddTask() {
+      rightContainer.appendChild(addTask);
+      addTask.appendChild(addBtn);
+      addTask.appendChild(addTaskText);
+  }
+
+  function removeAddTask() {
+    addTask.remove();
+  }
+
 function taskForm() {
+    removeAddTask();
     const taskFormContainer = document.createElement('div');
     taskFormContainer.setAttribute('id', 'taskFormContainer');
     rightContainer.appendChild(taskFormContainer);
@@ -98,10 +109,13 @@ function taskForm() {
 
 function deleteTaskForm() {
     event.preventDefault();
+    loadAddTask();
     const taskFormContainer = document.getElementById('taskFormContainer');
+    taskFormContainer.remove();
 }
 
 function createTask() {
+    loadAddTask();
     event.preventDefault();
     const title = document.getElementById('titleInput').value;
     const details = document.getElementById('detailsInput').value;
@@ -173,10 +187,6 @@ function Task(title, details, date) {
       dateText.innerHTML = "";
     }
     
-     
-    
-
-  
     const importantBtn = document.createElement('img');
     importantBtn.setAttribute('id', 'importantBtn');
     importantBtn.src="./imgs/starUnfilled.png";
@@ -235,6 +245,7 @@ function deleteProject() {
 }
 
 function taskFormEdit(event) {
+  removeAddTask();
   // Find the parent task element of the edit button that was clicked
   const taskElement = event.target.closest('.taskContainer');
 
@@ -283,15 +294,26 @@ function taskFormEdit(event) {
   const dateInput = document.createElement('input');
   dateInput.setAttribute('id', 'dateInput');
   dateInput.type = 'date';
-  const dateFormatted = format(new Date (taskDate.innerText), 'yyyy-MM-dd');
-  dateInput.value = dateFormatted
-  console.log(format(new Date (taskDate.innerText), 'yyyy/MM/dd'));
+  if (taskDate.innerText) {
+    try {
+      const formattedDate = format(new Date(taskDate.innerText), "yyyy-MM-dd");
+      dateInput.value = formattedDate;
+    } catch (error) {
+      dateInput.value = "";
+    }
+  } else {
+    dateInput.value = "";
+  }
+  //const formattedDate = format(new Date(taskDate.innerText), "yyyy-MM-dd");
+  //dateInput.value = formattedDate;
   taskForm.appendChild(dateInput);
+  
 
   const submit = document.createElement('button');
   submit.type = 'submit';
   submit.textContent = 'Save';
   submit.addEventListener('click', function(event) {
+    loadAddTask();
     event.preventDefault();
     const newTitle = titleInput.value;
     const newTaskTitle = document.createElement('div');
@@ -305,12 +327,21 @@ function taskFormEdit(event) {
     newDetailsTitle.innerText = newDetails;
     taskDetails.replaceWith(newDetailsTitle);
 
-    const newDate = format(new Date (dateInput.value), 'MM/dd/yyyy');
     const newDateTitle = document.createElement('div');
     newDateTitle.setAttribute('id', 'dateText');
-    newDateTitle.innerText = newDate;
+    const newDateUnformatted = dateInput.value;
+    const newDateFormatted = new Date(newDateUnformatted).toLocaleDateString('en-US', { timeZone: 'UTC' });   
+    if (newDateFormatted) {
+      try {
+        const reformattedDate = format(new Date(newDateFormatted), "MM/dd/yyyy");
+        newDateTitle.innerText = reformattedDate;
+      } catch (error) {
+        newDateTitle.innerText = "";
+      }
+    } else {
+      newDateTitle.innerText = "";
+    }
     taskDate.replaceWith(newDateTitle);
-
     taskFormContainer.remove();
   });
   taskForm.appendChild(submit);
@@ -325,23 +356,27 @@ function taskFormEdit(event) {
 function addimportant() {
   const taskElement = event.target.closest('.taskContainer');
   const importantBtn =  taskElement.querySelector('#importantBtn');
-  importantBtn.src = "./imgs/starFilled.png"
-  taskElement.classList.add('important');
+  if (taskElement.classList.contains('important')) {
+    taskElement.classList.remove('important');
+    importantBtn.src = "./imgs/starUnfilled.png";
+  } else {
+    taskElement.classList.add('important');
+    importantBtn.src = "./imgs/starFilled.png";
+  }
 
 }
 
 function completedTask() {
   const taskElement = event.target.closest('.taskContainer');
-  const completeTaskBtn =  taskElement.querySelector('#completeTaskBtn');
-  completeTaskBtn.src = "./imgs/filledCircleBlue.png"
-  taskElement.classList.add('completed');
+  const completeTaskBtn = taskElement.querySelector('#completeTaskBtn');
+  if (taskElement.classList.contains('completed')) {
+    taskElement.classList.remove('completed');
+    completeTaskBtn.src = "./imgs/filledCircle.png";
+  } else {
+    taskElement.classList.add('completed');
+    completeTaskBtn.src = "./imgs/filledCircleBlue.png";
+  }
 }
 
 
-function loadRight() {
-    rightContainer.appendChild(addTask);
-    addTask.appendChild(addBtn);
-    addTask.appendChild(addTaskText);
-}
-
-export { loadRight};
+export { loadAddTask, removeAddTask};

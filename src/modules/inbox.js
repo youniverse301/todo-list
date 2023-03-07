@@ -1,3 +1,5 @@
+import { loadAddTask } from "./edit";
+import { removeAddTask } from "./edit";
 const rightContainer = document.getElementById('rightContainer');
 const titleContainer = document.createElement('div');
 titleContainer.setAttribute('id', 'titleContainer');
@@ -37,6 +39,23 @@ const editBtn = document.createElement('img');
 editBtn.setAttribute('id', 'editBtn');
 editBtn.src="./imgs/menu-vertical.png";
 
+const bannerBtn = document.getElementById('sidebarBtn');
+bannerBtn.addEventListener('click', toggleLeftContainer);
+
+function toggleLeftContainer() {
+  const content = document.getElementById('content');
+  const leftContainer = content.querySelector('#leftContainer');
+  const rightContainer = document.getElementById('rightContainer');
+  if (leftContainer.style.display === 'none') {
+    leftContainer.style.display = 'block';
+    rightContainer.classList.remove('wide');
+  } else {
+    leftContainer.style.display = 'none';
+    rightContainer.classList.add('wide');
+  }
+}
+
+
 
 let projectId = 0;
 var projectName;
@@ -66,6 +85,8 @@ function createProject(projectName) {
 
     selectProject();
     menuvertWrap.addEventListener('click', toggleEditContainer);
+    loadAddTask();
+    project.addEventListener('click', loadAddTask);
 
 }
 
@@ -218,6 +239,9 @@ function selectProject() {
 }
 
 function loadInbox() {
+  removeAddTask();
+  const allTasksTitle = document.getElementById('allTasksTitle');
+  allTasksTitle.innerHTML = "Inbox";
   const leftContainer = document.getElementById('leftContainer');
   const selectedDivs = leftContainer.querySelectorAll('.selected');
   selectedDivs.forEach(function(selectedDiv) {
@@ -234,6 +258,9 @@ function loadInbox() {
 }
 
 function loadImportant() {
+  removeAddTask();
+  const allTasksTitle = document.getElementById('allTasksTitle');
+  allTasksTitle.innerHTML = "Important";
   const leftContainer = document.getElementById('leftContainer');
   const selectedDivs = leftContainer.querySelectorAll('.selected');
   selectedDivs.forEach(function(selectedDiv) {
